@@ -181,7 +181,7 @@ To see how many points you have, type .points
 I should stay online 24/7, but if I don't, message my creator (in the about me section)
 
 **About me:**
-I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (Files such as the points and user files are not available on it) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
+I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (The variable TOKEM is not defined on github) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
         """
         await message.channel.send(helptxt)
     
