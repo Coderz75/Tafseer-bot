@@ -34,6 +34,7 @@ al= 0
 users = []
 points = []
 startingValue= '0'
+Qtype = ''
 
 def getPoints(username, change):
     global users
@@ -107,6 +108,7 @@ async def on_message(message):
     global req
     global username
     global al
+    global Qtype
 
     username = message.author.name
     msg = message.content
@@ -121,6 +123,7 @@ async def on_message(message):
             q = sq[qn]
             a = sa[qn]
             qexists = 1
+            Qtype= 'seerah'
         elif msg == '.q trans':
             al = 0
             qn = random.randint(0, len(tq)-1)
@@ -130,6 +133,7 @@ async def on_message(message):
                 a= a.split('/')
                 al= 1
             qexists = 1
+            Qtype = 'trans'
         else:
             await message.channel.send('Invalid subject. please type .q [subject]')
             q = ''
@@ -139,19 +143,21 @@ async def on_message(message):
             if al != 1:
                 if msg == '.a ' + a:
                     await message.add_reaction("\N{Brain}")
-
-                    points = getPoints(username, 1)
-
+                    if Qtype == 'seerah':
+                        points = getPoints(username, 1)
+                    else:
+                        points = getPoints(username, 2)
                     await message.channel.send('Correct! Nice job. You have now ' + str(points) + ' points.' )
                 else:
                     await message.add_reaction("\N{Slightly Frowning Face}")
                     await message.channel.send('Incorrect, the correct answer was: ' + str(a))
+                
             else:
                 msg = msg.split('.a')[1]
                 if msg in a:
                     await message.add_reaction("\N{Brain}")
-
-                    await message.channel.send('Correct! Nice job. ' )
+                    points = getPoints(username, 2)
+                    await message.channel.send('Correct! Nice job. You have now ' + str(points) + ' points.' )  
                 else:
                     await message.add_reaction("\N{Slightly Frowning Face}")
                     await message.channel.send('Incorrect, the correct answer was: ' + str(a))
