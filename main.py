@@ -153,7 +153,7 @@ async def on_message(message):
                     await message.channel.send('Incorrect, the correct answer was: ' + str(a))
                 
             else:
-                msg = msg.split('.a')[1]
+                msg = msg.split('.a ')[1]
                 if msg in a:
                     await message.add_reaction("\N{Brain}")
                     points = getPoints(username, 2)
@@ -161,6 +161,7 @@ async def on_message(message):
                 else:
                     await message.add_reaction("\N{Slightly Frowning Face}")
                     await message.channel.send('Incorrect, the correct answer was: ' + str(a))
+                al = 0
             qexists = 0
         else:
             await message.channel.send('There is no current question. call it by typing .q [topic]. Type in .help for more help')
