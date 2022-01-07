@@ -4,7 +4,6 @@ import random
 import requests
 from keep_alive import keep_alive
 
-# Please note this is the code that the bot runs on, but storage files and variables are not available here
 
 
 
