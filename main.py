@@ -4,6 +4,9 @@ import random
 import requests
 from keep_alive import keep_alive
 
+# Please note this is the code that the bot runs on, but storage files and variables are not available here
+
+
 
 client = discord.Client()
 
@@ -173,7 +176,7 @@ To see how many points you have, type .points
 I should stay online 24/7, but if I don't, message my creator (in the about me section)
 
 **About me:**
-I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://replit.com/@nsyed_nha/Dicord-Bot-Nuaym-edition?v=1> My code is on replit, so it is open source, so you are  free to fork it, copy it in any way you can,as long as you give credit.
+I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (Files such as the points and user files are not available on it) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
         """
         await message.channel.send(helptxt)
     
