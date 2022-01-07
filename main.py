@@ -13,7 +13,7 @@ greetings = ["Hi", "hi", "hello", "Hello", "Hola", "Welcome", 'A wild', 'just sl
 
 #seerah
 
-sq = ["Which muslim convert changed the course of muslim history.", "What was the first actual battle that the muslims participated in", 'What was the first surah revealed in the quran', 'Is anything hidden from Allah (3:5)', 'Is there any diety except Allah (swt) (3:6)', "Do beleivers seek interpretations of Allah's (swt) devine book that is incorrect and suitable only to themselves (3:7)"]
+sq = ["Which muslim convert changed the course of muslim history.", "What was the first actual battle that the muslims participated in", 'What was the first surah revealed in the quran', 'Is anything hidden from Allah (3:5)', 'Is there any diety except Allah (swt) (3:6)', "Do disbeleivers seek interpretations of Allah's (swt) devine book that is incorrect and suitable only to themselves (3:7)"]
 
 sa = ["umar", "badr", 'alaq', 'no', 'no', 'no' ]
 
@@ -183,7 +183,8 @@ I should stay online 24/7, but if I don't, message my creator (in the about me s
 **About me:**
 I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (The variable TOKEM is not defined on github) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
         """
-        await message.channel.send(helptxt)
+        await message.add_reaction("\N{Thumbs Up Sign}")
+        await message.author.send(helptxt)
     
     req = requests.get("https://discord.com/api/path/to/the/endpoint")
     print(req)
