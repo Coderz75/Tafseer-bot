@@ -19,9 +19,9 @@ sa = ["umar", "badr", 'alaq', 'no', 'no', 'no' ]
 
 #transalation
 
-tq = ['وَظَلَّلْنَا', 'عَلَيْكُمُ', 'الْغَمَامَ', 'وَأَنزَلْنَا', ' الْمَنَّ', 'وَالسَّلْوَىٰ', ' كُلُوا', 'مِن', 'طَيِّبَاتِ', 'مَا', 'رَزَقْنَاكُمْ', 'ظَلَمُونَا ', 'وَلَٰكِن', 'كَانُوا', 'أَنفُسَهُمْ', 'يَظْلِمُونَ']
+tq = ['وَظَلَّلْنَا', 'عَلَيْكُمُ', 'الْغَمَامَ', 'وَأَنزَلْنَا', ' الْمَنَّ', 'وَالسَّلْوَىٰ', ' كُلُوا', 'مِن', 'طَيِّبَاتِ', 'مَا', 'رَزَقْنَاكُمْ', 'ظَلَمُونَا ', 'وَلَٰكِن', 'كَانُوا', 'أَنفُسَهُمْ', 'يَظْلِمُونَ', 'قَالُوا', 'ٱدْعُ', 'لَنَا', 'رَبَّكَ', 'يُبَيِّن', 'هِىَ', 'إِنَّ', 'ٱلْبَقَرَ', 'تَشَٰبَهَ', 'عَلَيْنَا', 'وَإِنَّآ', 'إِن', 'شَآءَ', ' ٱللَّهُ', 'لَمُهْتَدُونَ ']
 
-ta = ['and we shaded', 'upon you', 'the clouds', 'and we sent down', 'manna', 'and quails', 'eat', 'from', 'good things','what/not', 'we have provided you', 'they wronged us', 'but', 'they were', 'themselves', 'doing wrong']
+ta = ['and we shaded', 'upon you', 'the clouds', 'and we sent down', 'manna', 'and quails', 'eat', 'from', 'good things','what/not', 'we have provided you', 'they wronged us', 'but', 'they were', 'themselves', 'doing wrong', 'they said', 'pray', 'for us', 'your lord', 'to make clear', 'it', 'indeed', 'cows', 'look alike', 'to us', 'and indeed we', 'if', 'wills', 'Allah', 'surely be those who are guided']
 
 qn = 0
 q = ''
@@ -35,6 +35,7 @@ users = []
 points = []
 startingValue= '0'
 Qtype = ''
+prevIndex = 0;
 
 def getPoints(username, change):
     global users
@@ -109,6 +110,7 @@ async def on_message(message):
     global username
     global al
     global Qtype
+    global prevIndex
 
     username = message.author.name
     msg = message.content
@@ -120,13 +122,18 @@ async def on_message(message):
         await message.channel.send('fetching question...')
         if msg == '.q seerah':
             qn = random.randint(0, len(sq)-1)
+            while qn == prevIndex:
+                qn = random.randint(0, len(sq)-1)
             q = sq[qn]
             a = sa[qn]
             qexists = 1
             Qtype= 'seerah'
+            prevIndex = qn
         elif msg == '.q trans':
             al = 0
             qn = random.randint(0, len(tq)-1)
+            while qn == prevIndex:
+                qn = random.randint(0, len(tq)-1)
             q = 'What does ' + tq[qn] + ' mean'
             a = ta[qn]
             if '/' in a:
@@ -134,10 +141,12 @@ async def on_message(message):
                 al= 1
             qexists = 1
             Qtype = 'trans'
+            prevIndex = qn
+
         else:
             await message.channel.send('Invalid subject. please type .q [subject]')
             q = ''
-        await message.channel.send(q+'? Please type your answer in lowercase (to simplify the work i have to do)')
+        await message.channel.send(q+'? Please type your answer in lowercase, except proper nouns such as Allah. Please note that all transiltion questions will be either the Uthmani font or the simple font on tanzil.net.')
     if msg.startswith('.a'):
         if qexists == 1:
             if al != 1:
