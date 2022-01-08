@@ -183,6 +183,7 @@ I should stay online 24/7, but if I don't, message my creator (in the about me s
 
 **About me:**
 I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (The variable TOKEM is not defined on github) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
+Did you know my point storge system in universal? SO that means you can use me here, and on the server!. Just type in .q [topic] to get started!
         """
         await message.add_reaction("\N{Thumbs Up Sign}")
         await message.author.send(helptxt)
