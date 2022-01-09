@@ -37,6 +37,21 @@ startingValue= '0'
 Qtype = ''
 prevIndex = 0;
 
+def getMeaning(surah, ayat):
+        try:
+            f = open("en.hilali.txt",'r',encoding = 'utf-8')
+            fullMeaning = f.readlines()
+        finally:
+            f.close()
+        if surah != 0:
+            for line in fullMeaning:
+                if line.split('|')[0] == str(surah):
+                    if line.split('|')[1] == str(ayat):
+                        return line
+            return 'invalid surah and ayat'
+        else:
+            return random.choice(fullMeaning)
+
 def getPoints(username, change):
     global users
     global points
@@ -178,9 +193,10 @@ async def on_message(message):
     if message.content.strip() ==".help":
         helptxt = """
 **Tafseer bot**
-Hello! I am Tafseer bot. I help in keeping your brain fresh by askingg you questions! How plesent, right?
+Hello! I am Tafseer bot. I help in keeping your brain fresh doing stuff! How plesent, right?
 
-**My Current topics:**
+**Commands:**
+My Current topics:
 :book:: .q seerah
 Arabic :arrow_forward: English: .q trans (transalation)
 
@@ -188,11 +204,18 @@ to answer, just type .a [answer]
 
 To see how many points you have, type .points
 
+To get and ayat transilation, type in gimme ayat [OPTIONAL: Surah number],[AYAT NUMBER]
+Example, if I want to see the transilation of surah Fatiha ayat 2, then I would type gimme ayat 1,2 
+
 I should stay online 24/7, but if I don't, message my creator (in the about me section)
 
 **About me:**
-I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (The variable TOKEM is not defined on github) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
+I am a bot built by Nuaym #5039 on nsyed_nha. My source code could be found here: <https://github.com/Coderz75/Tafseer-bot/> (The variable TOKEn is not defined on github) My license can be found here: https://github.com/Coderz75/Tafseer-bot/blob/main/LICENSE.
 Did you know my point storge system in universal? SO that means you can use me here, and on the server!. Just type in .q [topic] to get started!
+
+*Credits:*
+I was made by Nuaym #5039. My quran transilation is from https://tanzil.net/trans/
+Transilation type: Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan read the first line of the en.hilali.txt file for more info
         """
         await message.add_reaction("\N{Thumbs Up Sign}")
         await message.author.send(helptxt)
@@ -206,6 +229,19 @@ Did you know my point storge system in universal? SO that means you can use me h
     if '.points' in msg:
         points = getPoints(username,0) 
         await message.channel.send('You have: ' + str(points) + ' points')
+    
+    if msg.startswith('gimme ayat'):
+        if msg.split('ayat')[1] == '' or  msg.split('ayat')[1] == ' ':
+            meaning = getMeaning(0, 0)
+            
+        else:
+            item = msg.split('ayat ')[1]
+            print(item)
+            surah = item.split(',')[0]
+            ayat = item.split(',')[1]
+            meaning = getMeaning(int(surah), int(ayat))
+        await message.channel.send(str(meaning))
+        await message.channel.send('Please not that the transilation is from https://tanzil.net/trans/ and the authors are Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan. Remember, no transilation is perfect.')
 
 
 keep_alive()
