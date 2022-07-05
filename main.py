@@ -11,7 +11,7 @@ logger.addHandler(handler)
 
 
 
-client = discord.Client()
+client = discord.Client(intents = discord.Intents.all())
 
 greetings = ["Hi", "hi", "hello", "Hello", "Hola", "Welcome", 'A wild', 'just slid into the server', 'Good to see you','Yay you made it', 'just showed up!', "Glad you're here,"]
 
