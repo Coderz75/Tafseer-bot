@@ -247,7 +247,7 @@ Transilation type: Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan read 
         await message.channel.send(str(meaning))
         await message.channel.send('Please not that the transilation is from https://tanzil.net/trans/ and the authors are Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan. Remember, no transilation is perfect.')
 
-client.run(INSERT_TOKEN)
+client.run("INSERT_TOKEN")
 
 abort = input()
 
